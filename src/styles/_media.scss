@@ -1,0 +1,27 @@
+@media (max-width: 950px) {
+  .app {
+    flex-direction: column;
+    &__emoji-box {
+      margin: auto auto 3rem auto;
+    }
+  }
+}
+@media (max-width: 650px) {
+  .app {
+    &__mood-history {
+      &_list {
+        &_item {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .app {
+    &__emoji-box {
+      width: 90%;
+    }
+  }
+}

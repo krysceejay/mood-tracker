@@ -75,14 +75,13 @@ img {
 
   &__emoji-box {
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 464px;
     height: 577px;
     border-radius: 15px;
     border: 1px solid #C4C4C4;
-    //background-color: red;
-    padding: 102px 0;
 
     &_image {
       width: 94px;
@@ -99,11 +98,11 @@ img {
     }
     &_container {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
       margin-top: 57px;
 
-      &_sad, &_indifferent, &_happy {
+      &_image {
         width: 55px;
         height: 55px;
         background-color: rgba(175, 170, 168, 0.2);
@@ -111,6 +110,7 @@ img {
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
         
         img {
           width: 30px;
@@ -118,8 +118,18 @@ img {
           object-fit: contain;
         }
       }
-      &_indifferent {
-        margin: 0 20px;
+      &--sad {
+        background-color: rgba(249, 49, 49, 0.1);
+        border: 2px solid #F93131;
+      }
+      &--indifferent {
+        background-color: rgba(255, 150, 53, 0.2);
+        border: 2px solid #FF9635;
+        //margin: 0 20px;
+      }
+      &--happy {
+        background-color: rgba(50, 194, 82, 0.2);
+        border: 2px solid #1D9A39;
       }
     }
 
@@ -128,10 +138,20 @@ img {
       font-weight: 600;
       font-size: 18px;
       line-height: 26px;
+
+      &--sad {
+        color: #F93131;
+      }
+      &--indifferent {
+        color: #FF9635;
+      }
+      &--happy {
+        color: #1D9A39;
+      }
     }
 
-    button {
-      background-color: #120C35;
+    &_submit {
+      background-color: #EFEEEE;
       border-radius: 5px;
       padding: 8px 20px;
       color: #fff;
@@ -139,13 +159,17 @@ img {
       font-size: 18px;
       line-height: 26px;
       font-family: Nunito;
+
+      &--active {
+        background-color: #120C35;
+      }
     }
   }
   &__mood-history {
     flex: 1;
     //background-color: yellow;
-    padding-bottom: 3rem;
-    //margin-left: 169px;
+    padding: 0 3rem 3rem 3rem;
+    //margin-left: 80px;
 
     &_head {
       display: flex;
@@ -176,10 +200,40 @@ img {
       margin-top: 8px;
     }
 
+    &_empty-state {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 345px;
+      height: 264px;
+      border: 1px solid #EFEEEE;
+      border-radius: 5px;
+      margin: 54px auto auto auto;
+      
+
+      &_img {
+        width: 72px;
+        height: 61px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        
+      }
+      &_text {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 18px;
+        text-align: center;
+        color: #AFAAA8;
+        margin-top: 13px;
+      }
+    }
+
     &_list {
-      //background-color: red;
       margin-top: 24px;
-      padding: 0 3rem;
 
       &_item {
         display: flex;
@@ -197,13 +251,22 @@ img {
           top: 0;
           bottom: 0;
           right: 0;
-          //background-color: #F93131;
           overflow: hidden;
           img {
             width: 100%;
             height: 100%;
             object-fit: cover;
           }
+        }
+
+        &--sad {
+          border: 1px solid #F93131;
+        }
+        &--indifferent {
+          border: 1px solid #FF9635;
+        }
+        &--happy {
+          border: 1px solid #1D9A39;
         }
 
         &_img-sad {
@@ -246,4 +309,6 @@ img {
     }
   }
 }
+
+@import 'media';
 

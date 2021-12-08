@@ -1,60 +1,80 @@
+import React, {useState} from 'react'
+import moment from 'moment'
+import EmptyState from './components/EmptyState'
+import TrackMood from './components/TrackMood'
+import MoodCard from './components/MoodCard'
 
 const App = () => {
+
+  const [state, setState] = useState({
+    history: [],
+    isSelected: null
+
+  })
+
+  const { history, isSelected } = state
+
+  const handleSelect = ind => {
+    let emojiText
+    switch (ind) {
+      case "sad":
+        emojiText = "Cat wasn’t having it"
+        break;
+
+      case "indifferent":
+        emojiText = "Cat was indifferent"
+        break;
+
+      case "happy":
+        emojiText = "Cat was super excited!"
+        break;
+    
+      default:
+        emojiText = ""
+        break;
+    }
+
+    const dataSelected = {
+      emoji: ind,
+      date: `${moment().format("DD-MM-YYYY")} / ${moment().format('h:mm a')}`,
+      emojiText
+    }
+
+    setState({...state, isSelected: dataSelected})
+  }
+
+  const handleSubmit = () => {
+    setState({...state, history: [isSelected, ...history], isSelected: null})
+  }
+
   return (
     <main>
       <div className="container">
         <div className="app">
-          <section className="app__emoji-box">
-            <img src="/img/cat-img1.png" alt="Cat Image" className="app__emoji-box_image" />
-            <p className="app__emoji-box_text">What is your cat’s <br /> current mood?</p>
-            <div className="app__emoji-box_container">
-              <div className="app__emoji-box_container_sad">
-                <img src="/img/sad.png" alt="Sad Emoji" />
-              </div>
-              <div className="app__emoji-box_container_indifferent">
-                <img src="/img/indifferent.png" alt="Indifferent Emoji" />
-              </div>
-              <div className="app__emoji-box_container_happy">
-                <img src="/img/happy.png" alt="Happy Emoji" />
-              </div>
-            </div>
-            <p className="app__emoji-box_selected">Cat was super excited!</p>
-            <button>Save mood</button>
-          </section>
+          <TrackMood 
+          isSelected={isSelected}
+          handleSelect={handleSelect}
+          handleSubmit={handleSubmit}
+          />
           <section className="app__mood-history">
             <div className="app__mood-history_head">
               <div className="app__mood-history_head_image">
-                <img src="/img/cat-img1.png" alt="Cat Image" />
+                <img src="/img/cat-img1.png" alt="Cat" />
               </div>
               <div className="app__mood-history_head_text">Cat mood tracker™</div>
             </div>
             <div className="app__mood-history_title">mood history</div>
+            {history.length === 0 ?
+            <EmptyState /> :
             <div className="app__mood-history_list">
-              <div className="app__mood-history_list_item sad">
-                <div className="app__mood-history_list_item_img-sad">
-                  <img src="/img/sad.png" alt="Sad Emoji" />
-                </div>
-                <div className="app__mood-history_list_item_text">
-                  <p className="app__mood-history_list_item_text_head_sad">Cat wasn’t having it</p>
-                  <p className="app__mood-history_list_item_text_date">06-09-2021 / 07:01</p>
-                </div>
-                <div className="app__mood-history_list_item_cat-img">
-                  <img src="/img/background.png" alt="Sad Emoji" />
-                </div>
-              </div>
-              <div className="app__mood-history_list_item happy">
-                <div className="app__mood-history_list_item_img-happy">
-                  <img src="/img/happy.png" alt="Happy Emoji" />
-                </div>
-                <div className="app__mood-history_list_item_text">
-                  <p className="app__mood-history_list_item_text_head_happy">Cat was super excited!</p>
-                  <p className="app__mood-history_list_item_text_date">06-09-2021 / 07:01</p>
-                </div>
-                <div className="app__mood-history_list_item_cat-img">
-                  <img src="/img/background.png" alt="Sad Emoji" />
-                </div>
-              </div>
-            </div>
+              {history.map((it, ind) => (
+                <MoodCard 
+                key={ind}
+                it={it}
+                />
+              ))}
+            </div> 
+            }
           </section>
         </div>
       </div>
@@ -62,4 +82,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App
