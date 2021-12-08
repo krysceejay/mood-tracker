@@ -1,0 +1,61 @@
+.container {
+  max-width: $website-width;
+  padding: 0 2rem;
+  margin: auto;
+  overflow: hidden;
+  //height: 100vh;
+  //background-color: black;
+}
+
+//Padding
+.py {
+  &-1 {
+    padding: 1rem 0 !important;
+  }
+  &-2 {
+    padding: 2rem 0 !important;
+  }
+  &-3 {
+    padding: 3rem 0 !important;
+  }
+  &-4 {
+    padding: 4rem 0 !important;
+  }
+  &-5 {
+    padding: 5rem 0 !important;
+  }
+}
+
+//Margin
+.my {
+  &-1 {
+    margin: 1rem 0 !important;
+  }
+  &-2 {
+    margin: 2rem 0 !important;
+  }
+  &-3 {
+    margin: 3rem 0 !important;
+  }
+  &-4 {
+    margin: 4rem 0 !important;
+  }
+}
+
+button {
+  box-shadow: none;
+  outline: none;
+  z-index: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.sad {
+  border: 1px solid #F93131;
+}
+.indifferent {
+  border: 1px solid #FF9635;
+}
+.happy {
+  border: 1px solid #1D9A39;
+}
