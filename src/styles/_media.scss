@@ -7,8 +7,15 @@
   }
 }
 @media (max-width: 650px) {
+  .container {
+    padding: 0 0.5rem;
+  }
   .app {
     &__mood-history {
+      padding: 0;
+      &_empty-state {
+        width: 100%;
+      }
       &_list {
         &_item {
           width: 100%;
@@ -22,6 +29,7 @@
   .app {
     &__emoji-box {
       width: 90%;
+      height: 450px;
     }
   }
 }
